@@ -1,4 +1,4 @@
-(function(){
+(function () {
 
     let data = [
         [
@@ -52,17 +52,17 @@
 
     let tot_courses = data[2];
     let list_courses = data[0];
-    
+
     let stud_data = data[1];
-    let num_students=[];
-    for(let i=0;i<tot_courses;i++){
+    let num_students = [];
+    for (let i = 0; i < tot_courses; i++) {
         num_students.push(stud_data[list_courses[i]].length);
     }
     console.log(num_students)
     let k = document.getElementById("ccl");
     let x = "";
-    for(let i=0;i<tot_courses;i++){
-        x+=`
+    for (let i = 0; i < tot_courses; i++) {
+        x += `
         <button type="button" id="${list_courses[i]}"  class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
         ${list_courses[i]}
         <span class="badge badge-primary badge-pill" data-toggle="tooltip" data-placement="left" title="#students">${num_students[i]}</span>
@@ -72,32 +72,32 @@
 
     let current_course = list_courses[0];
     k.innerHTML = x;
-   
+
     let buttons = document.getElementsByTagName("button");
-    for(let i=0;i<buttons.length;i++){
-        buttons[i].addEventListener('click',(e)=>{
+    for (let i = 0; i < buttons.length; i++) {
+        buttons[i].addEventListener('click', (e) => {
             //e.target.id = "DATABASE SYSTEMS"
             console.log(e.target)
-            fillViewData(e.target.id,stud_data[e.target.id]);
+            fillViewData(e.target.id, stud_data[e.target.id]);
         })
     }
 
     console.log(data);
-    fillViewData(current_course,stud_data[current_course])
+    fillViewData(current_course, stud_data[current_course])
 
- })();
- 
- function fillViewData(current_course,data){
-        let current_sem = data[0][3];
-        let current_batch = data[0][2];
+})();
 
-        
+function fillViewData(current_course, data) {
+    let current_sem = data[0][3];
+    let current_batch = data[0][2];
 
-        let k = document.getElementById("cdata-view");
 
-        let x="";
-        x=
-        `<h6>Course: <span id="ccourse">DATABASE SYSTEMS</span></h6>
+
+    let k = document.getElementById("cdata-view");
+
+    let x = "";
+    x =
+        `<h6>Course: <span id="ccourse">${current_course}</span></h6>
         <table> 
         <tr >
         <th class="xyz">
@@ -117,9 +117,10 @@
          <th>Grade </th>
         </tr>
         `
-        let j=0;
-        for(let i=0;i<data.length;i++){j++;
-            x+=`
+    let j = 0;
+    for (let i = 0; i < data.length; i++) {
+        j++;
+        x += `
 
                 <tr>
                 <td>
@@ -136,10 +137,10 @@
                 </td>
                 </tr>
             `
-        }
-        x+=`
+    }
+    x += `
         </table>
         `;
-        k.innerHTML +=x;
-        
- }
+    k.innerHTML = x;
+
+}
