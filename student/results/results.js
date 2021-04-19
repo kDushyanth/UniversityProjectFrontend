@@ -1,8 +1,21 @@
 let Line;
 (function(){
-    
+    getData('https://jsonplaceholder.typicode.com/todos/1')
+})();
+async function getData(url){
+    try {
+        let response = await axios.get(url);
+        if(response.status==200){
+            console.log(response.data);
+            fillData(response.data);
+        }
+    } catch (error) {
+        console.log(error);
+    }
+}
+function fillData(data){
     let programme = "b.tech"
-    let data = {
+    data = {
         "sgrades": [
             {
                 "sroll": "18CS01001",
@@ -301,7 +314,7 @@ let Line;
     let cxt = document.getElementById("progress");
     if(programme=="b.tech")drawLine(cxt,gradesForP,[1,2,3,4,5,6,7,8]);
     if(programme=="m.tech")drawLine(cxt,gradesForP,[1,2,3,4]);
-})();
+}
 function drawLine(cxt,grades,labels){
     if(Line){
         Line.destroy();

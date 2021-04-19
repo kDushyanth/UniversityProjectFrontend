@@ -1,5 +1,16 @@
-(function(){
-    let data ={
+const getDataAndFill = async function(url){
+    try {
+        let response = await axios.get(url);
+        if(response.status==200 ){
+           console.log(response.data); 
+           fillData(response.data);
+        }
+    } catch (error) {
+        console.log(error);
+    }
+}
+function fillData(data){
+    data ={
         "coursesList": [
             {
                 "sroll": "18CS01001",
@@ -254,15 +265,6 @@
             }
         ]
     }
-    /*
-            "sroll": "18CS01001",
-            "course_id": 2,
-            "cname": "ENGLISH",
-            "ctype": "CORE",
-            "dept_id": 3,
-            "semno": 1,
-            "credits": 4
-    */
    let coursesList = data.coursesList;
    let registered = data.registered;
    let offeredCourses = data.offeredCourses;
@@ -361,5 +363,9 @@
    }
    
    lc.innerHTML = globalList;
+}
+(function(){
+    
+   getDataAndFill('https://jsonplaceholder.typicode.com/todos/1');
    
 })();

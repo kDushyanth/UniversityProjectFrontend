@@ -1,6 +1,66 @@
 (function () {
+    getAndFillData('https://jsonplaceholder.typicode.com/todos/1');
 
-    let data = [
+})();
+function fillViewData(current_course, data) {
+    let current_sem = data[0][3];
+    let current_batch = data[0][2];
+
+
+
+    let k = document.getElementById("cdata-view");
+
+    let x = "";
+    x =
+        `<h6>Course: <span id="ccourse">${current_course}</span></h6>
+        <table> 
+        <tr >
+        <th class="xyz">
+        Batch: ${current_batch}
+        </th>
+        <th class="xyz">
+        </th>
+        <th class="xyz">
+        </th>
+        <th class="xyz">
+        Semester: ${current_sem}
+        </th>
+        </tr>
+
+        <tr> <th>S.no</th><th>Student Name </th>
+         <th>Roll No </th>
+         <th>Grade </th>
+        </tr>
+        `
+    let j = 0;
+    for (let i = 0; i < data.length; i++) {
+        j++;
+        x += `
+
+                <tr>
+                <td>
+                ${j}
+                </td>
+                <td>
+                ${data[i][1]}
+                </td>
+                <td>
+                ${data[i][0]}
+                </td>
+                <td>
+                <input type="number" step="1" min="1" max="10" required />
+                </td>
+                </tr>
+            `
+    }
+    x += `
+        </table>
+        `;
+    k.innerHTML = x;
+
+}
+function fillData(data){
+    data = [
         [
             "DATABASE SYSTEMS",
             "DATABASE SYSTEMS LAB"
@@ -81,66 +141,18 @@
             fillViewData(e.target.id, stud_data[e.target.id]);
         })
     }
-
+    fillViewData(current_course, stud_data[current_course]);
     console.log(data);
-    fillViewData(current_course, stud_data[current_course])
+}
 
-})();
-
-function fillViewData(current_course, data) {
-    let current_sem = data[0][3];
-    let current_batch = data[0][2];
-
-
-
-    let k = document.getElementById("cdata-view");
-
-    let x = "";
-    x =
-        `<h6>Course: <span id="ccourse">${current_course}</span></h6>
-        <table> 
-        <tr >
-        <th class="xyz">
-        Batch: ${current_batch}
-        </th>
-        <th class="xyz">
-        </th>
-        <th class="xyz">
-        </th>
-        <th class="xyz">
-        Semester: ${current_sem}
-        </th>
-        </tr>
-
-        <tr> <th>S.no</th><th>Student Name </th>
-         <th>Roll No </th>
-         <th>Grade </th>
-        </tr>
-        `
-    let j = 0;
-    for (let i = 0; i < data.length; i++) {
-        j++;
-        x += `
-
-                <tr>
-                <td>
-                ${j}
-                </td>
-                <td>
-                ${data[i][1]}
-                </td>
-                <td>
-                ${data[i][0]}
-                </td>
-                <td>
-                <input type="number" step="1" min="1" max="10" required />
-                </td>
-                </tr>
-            `
+async function getAndFillData(url){
+    try {
+        let response = await axios.get(url);
+        if(response.status==200){
+            console.log(response.data);
+            fillData(response.data);
+        }
+    } catch (error) {
+        console.log(error);
     }
-    x += `
-        </table>
-        `;
-    k.innerHTML = x;
-
 }
