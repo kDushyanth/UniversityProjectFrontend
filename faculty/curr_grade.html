@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
-    <title>Fill Attendance</title>
+    <link rel="stylesheet" href="curr_attend.css">
+    <title>Grade Submission</title>
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -33,42 +34,18 @@
         </div>
       </nav>
     <div class="container">
-        <div class="row">
-            <div class="col-6">
-                <p><strong>Course Name: </strong><span id="cname">Database Management System</span></p>
-            </div>
-            <div class="col-6">
-                <p><strong>Course Id: </strong><span id="cid">DBMS</span></p>
-            </div>
-            <div class="col-6">
-                <p><strong>Course Type: </strong><span id="ctype">Core theory</span></p>
-            </div>
-            <div class="col-6">
-                <p><strong>Credits: </strong><span id="ccredits">5</span></p>
-            </div>
-            <div class="col-6">
-                <p><strong>Date: </strong><span id="cdate">22-01-2020</span></p>
-            </div>
+      <h6 class="bg-dark text-white text-center p-2 mt-2">Current Courses</h6>
+      
+        <div class="list-group mx-auto mb-5" style="max-width: 700px;"  id="ccl">
+          
         </div>
+      
+      <div id="cdata-view">
         
-        <div>
-            <table id="cgrade" class="shadow-sm mx-auto">
-                <tr>
-                    <th class='border border-dark p-2 bg-warning'>
-                        Name
-                    </th >
-                    <th class='border border-dark p-2 bg-warning'>
-                        Roll number
-                    </th>
-                    <th class='border border-dark p-2 bg-warning'>
-                        Grade
-                    </th>
-                </tr>
-            </table>
-        </div>
         
-       
+      </div>
     </div>
+    
     <script src = "curr_grade.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
