@@ -5,15 +5,15 @@
 function fillViewData(current_course, data) {
     let current_sem = data[0][3];
     let current_batch = data[0][2];
+    let course_id = data[0][4];
 
-
-
+    //console.log(course_id,"xy");
     let k = document.getElementById("cdata-view");
 
     let x = "";
     x =
         `<h6>Course: <span id="ccourse">${current_course}</span></h6>
-        <table> 
+        <table class="mb-3"> 
         <tr >
         <th class="xyz">
         Batch: ${current_batch}
@@ -48,15 +48,44 @@ function fillViewData(current_course, data) {
                 ${data[i][0]}
                 </td>
                 <td>
-                <input type="number" step="1" min="1" max="10" required />
+                <input type="number" step="1" min="1" max="10" name="${data[i][0]}" required />
                 </td>
                 </tr>
             `
     }
     x += `
         </table>
+        <div class="d-flex flex-row justify-content-center">
+        <button type="submit" id="gradeSub" class="btn btn-dark text-white">Submit</button>
+        </div>
         `;
     k.innerHTML = x;
+    let l = document.getElementById("gradeSub");
+    l.addEventListener("click",async (e)=>{
+        e.preventDefault();
+        e.target.disabled=true;
+        console.log("clicked");
+        let gradeData=[];
+        let w = document.getElementById("cdata-view");
+        let gradeIP = w.getElementsByTagName("input");
+        for(let i=0;i<gradeIP.length;i++){
+            
+                console.log(gradeIP[i].value);
+                gradeData.push({sroll:gradeIP[i].name,course_id:course_id,grade:(gradeIP[i].value).length==0? "0":(gradeIP[i].value).length});
+        }
+        console.log(gradeData);
+        /*let response = await axios({
+            url:"",
+            method:"post",
+            data:gradeData
+        });
+        */
+        //console.log(response.data);
+        e.target.innerHTML = `
+        <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+        Grading...`;
+       
+    })
 
 }
 function fillData(data){
