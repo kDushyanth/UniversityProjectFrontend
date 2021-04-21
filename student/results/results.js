@@ -326,11 +326,32 @@ function drawLine(cxt,grades,labels){
                 label:'SGPA',
                 fill:false,
                 data:grades,
-                borderColor:'rgb(255, 99, 132)'
+                borderColor:'rgb(0,0,0)'
             }
         ]
     }
     let _options = {
+        
+            scales: {
+                y: {
+                    title:{
+                        display:true,
+                        text:"SGPA",
+                        font: {
+                            size: 15
+                        }
+                    }
+                },
+                x:{
+                    title:{
+                        display:true,
+                        text:"Semester",
+                        font: {
+                            size: 15
+                        }
+                    }
+                }
+            }
         
     }
     Line = new Chart(cxt,

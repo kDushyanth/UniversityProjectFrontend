@@ -1,6 +1,6 @@
+let Bar;
 (function () {
     getAndFillData('https://jsonplaceholder.typicode.com/todos/1');
-
 })();
 function fillViewData(current_course, data) {
     let current_sem = data[0][3];
@@ -33,6 +33,7 @@ function fillViewData(current_course, data) {
         </tr>
         `
     let j = 0;
+ 
     for (let i = 0; i < data.length; i++) {
         j++;
         x += `
@@ -48,96 +49,140 @@ function fillViewData(current_course, data) {
                 ${data[i][0]}
                 </td>
                 <td>
-                <input type="number" step="1" min="1" max="10" name="${data[i][0]}" required />
+                ${data[i][4]}
                 </td>
                 </tr>
             `
     }
     x += `
         </table>
-        <div class="d-flex flex-row justify-content-center">
-        <button type="submit" id="gradeSub" class="btn btn-dark text-white">Submit</button>
-        </div>
         `;
-    k.innerHTML = x;
-    let l = document.getElementById("gradeSub");
-    l.addEventListener("click",async (e)=>{
-        e.preventDefault();
-        e.target.disabled=true;
-        console.log("clicked");
-        let gradeData=[];
-        let w = document.getElementById("cdata-view");
-        let gradeIP = w.getElementsByTagName("input");
-        for(let i=0;i<gradeIP.length;i++){
-            
-                console.log(gradeIP[i].value);
-                gradeData.push({sroll:gradeIP[i].name,course_id:course_id,grade:(gradeIP[i].value).length==0? "0":(gradeIP[i].value).length});
-        }
-        console.log(gradeData);
-        /*let response = await axios({
-            url:"",
-            method:"post",
-            data:gradeData
-        });
-        */
-        //console.log(response.data);
-        e.target.innerHTML = `
-        <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
-        Grading...`;
-       
-    })
+    k.innerHTML= x;
+    let ithGrade=[];
+    for(let i=0;i<=10;i++){
+        ithGrade.push(0);
+    }
+    for(let i=0;i<data.length;i++){
+        ithGrade[data[i][4]]++;
+    }
+    drawBar(document.getElementById("bar"),ithGrade,[0,1,2,3,4,5,6,7,8,9,10])
+    console.log(data);
+
 
 }
 function fillData(data){
     data = [
         [
-            "DATABASE SYSTEMS",
-            "DATABASE SYSTEMS LAB"
+            "INTRO TO ML",
+            "DISCRETE MATHS",
+            "PDS"
         ],
         {
-            "DATABASE SYSTEMS": [
+            "INTRO TO ML": [
                 [
                     "18CS01001",
                     "SRIPAD",
                     2018,
-                    6
+                    4,
+                    10,
+                    16
+                ],
+                [
+                    "18CS01002",
+                    "DUSHYANTH",
+                    2018,
+                    4,
+                    10,
+                    16
                 ],
                 [
                     "18CS01003",
                     "STUDENT3",
                     2018,
-                    6
+                    4,
+                    10,
+                    16
                 ],
                 [
                     "18CS01004",
                     "STUDENT4",
                     2018,
-                    6
+                    4,
+                    10,
+                    16
                 ]
             ],
-            "DATABASE SYSTEMS LAB": [
+            "DISCRETE MATHS": [
                 [
                     "18CS01001",
                     "SRIPAD",
                     2018,
-                    6
+                    3,
+                    9,
+                    10
+                ],
+                [
+                    "18CS01002",
+                    "DUSHYANTH",
+                    2018,
+                    3,
+                    10,
+                    10
                 ],
                 [
                     "18CS01003",
                     "STUDENT3",
                     2018,
-                    6
+                    3,
+                    10,
+                    10
                 ],
                 [
                     "18CS01004",
                     "STUDENT4",
                     2018,
-                    6
+                    3,
+                    10,
+                    10
+                ]
+            ],
+            "PDS": [
+                [
+                    "18CS01001",
+                    "SRIPAD",
+                    2018,
+                    1,
+                    10,
+                    1
+                ],
+                [
+                    "18CS01002",
+                    "DUSHYANTH",
+                    2018,
+                    1,
+                    10,
+                    1
+                ],
+                [
+                    "18CS01003",
+                    "STUDENT3",
+                    2018,
+                    1,
+                    10,
+                    1
+                ],
+                [
+                    "18CS01004",
+                    "STUDENT4",
+                    2018,
+                    1,
+                    10,
+                    1
                 ]
             ]
         },
-        2
-    ]
+        3
+    ];
 
     let tot_courses = data[2];
     let list_courses = data[0];
@@ -171,7 +216,7 @@ function fillData(data){
         })
     }
     fillViewData(current_course, stud_data[current_course]);
-    console.log(data);
+    
 }
 
 async function getAndFillData(url){
@@ -180,8 +225,57 @@ async function getAndFillData(url){
         if(response.status==200){
             console.log(response.data);
             fillData(response.data);
+        
         }
     } catch (error) {
         console.log(error);
     }
+}
+function drawBar(cxt,grades,labels){
+    if(Bar){
+        Bar.destroy();
+    }
+    let _data = {
+        labels:labels,
+        datasets:[
+            {
+                label:'Grades',
+                fill:false,
+                data:grades,
+                borderColor:'rgb(0,0,0)',
+                backgroundColor:'rgb(0,0,0)'
+            }
+        ]
+    }
+    let _options = {
+        
+            scales: {
+                y: {
+                    title:{
+                        display:true,
+                        text:"Count(Students)",
+                        font: {
+                            size: 15
+                        }
+                    }
+                },
+                x:{
+                    title:{
+                        display:true,
+                        text:"Grade",
+                        font: {
+                            size: 15
+                        }
+                    }
+                }
+            }
+        
+    }
+    Bar = new Chart(cxt,
+        {
+            type:'bar',
+            data:_data,
+            options:_options
+        });
+        
 }
