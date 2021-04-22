@@ -1,6 +1,7 @@
 let Line;
 (function(){
-    getData('https://jsonplaceholder.typicode.com/todos/1')
+    console.log("i am loaded");
+    getData('http://localhost:8081/srollgrades')
 })();
 async function getData(url){
     try {
@@ -15,197 +16,7 @@ async function getData(url){
 }
 function fillData(data){
     let programme = "b.tech"
-    data = {
-        "sgrades": [
-            {
-                "sroll": "18CS01001",
-                "cname": "PDS",
-                "ctype": "CORE",
-                "grade": 10,
-                "semno": 1,
-                "credits": 4
-            },
-            {
-                "sroll": "18CS01001",
-                "cname": "ENGLISH",
-                "ctype": "CORE",
-                "grade": 10,
-                "semno": 1,
-                "credits": 4
-            },
-            {
-                "sroll": "18CS01001",
-                "cname": "PHYSICS",
-                "ctype": "CORE",
-                "grade": 10,
-                "semno": 1,
-                "credits": 4
-            },
-            {
-                "sroll": "18CS01001",
-                "cname": "MATHS",
-                "ctype": "CORE",
-                "grade": 10,
-                "semno": 1,
-                "credits": 4
-            },
-            {
-                "sroll": "18CS01001",
-                "cname": "MATHS2",
-                "ctype": "CORE",
-                "grade": 10,
-                "semno": 2,
-                "credits": 4
-            },
-            {
-                "sroll": "18CS01001",
-                "cname": "CHEMISTRY",
-                "ctype": "CORE",
-                "grade": 10,
-                "semno": 2,
-                "credits": 4
-            },
-            {
-                "sroll": "18CS01001",
-                "cname": "ENGLISH2",
-                "ctype": "CORE",
-                "grade": 10,
-                "semno": 2,
-                "credits": 4
-            },
-            {
-                "sroll": "18CS01001",
-                "cname": "CHEMISTRY LAB",
-                "ctype": "LAB",
-                "grade": 10,
-                "semno": 2,
-                "credits": 4
-            },
-            {
-                "sroll": "18CS01001",
-                "cname": "DATA STRUCTURES",
-                "ctype": "CORE",
-                "grade": 10,
-                "semno": 3,
-                "credits": 4
-            },
-            {
-                "sroll": "18CS01001",
-                "cname": "MATHS3",
-                "ctype": "CORE",
-                "grade": 10,
-                "semno": 3,
-                "credits": 4
-            },
-            {
-                "sroll": "18CS01001",
-                "cname": "DATA STRUCTURES LAB",
-                "ctype": "LAB",
-                "grade": 9,
-                "semno": 3,
-                "credits": 3
-            },
-            {
-                "sroll": "18CS01001",
-                "cname": "DISCRETE MATHS",
-                "ctype": "CORE",
-                "grade": 9,
-                "semno": 3,
-                "credits": 4
-            },
-            {
-                "sroll": "18CS01001",
-                "cname": "COMBINATORICS",
-                "ctype": "CORE",
-                "grade": 10,
-                "semno": 4,
-                "credits": 4
-            },
-            {
-                "sroll": "18CS01001",
-                "cname": "ALGORITHMS",
-                "ctype": "CORE",
-                "grade": 10,
-                "semno": 4,
-                "credits": 4
-            },
-            {
-                "sroll": "18CS01001",
-                "cname": "ALGORITHMS LAB",
-                "ctype": "LAB",
-                "grade": 9,
-                "semno": 4,
-                "credits": 3
-            },
-            {
-                "sroll": "18CS01001",
-                "cname": "INTRO TO ML",
-                "ctype": "CORE",
-                "grade": 10,
-                "semno": 4,
-                "credits": 1
-            },
-            {
-                "sroll": "18CS01001",
-                "cname": "OPERATING SYSTEMS LAB",
-                "ctype": "LAB",
-                "grade": 10,
-                "semno": 5,
-                "credits": 3
-            },
-            {
-                "sroll": "18CS01001",
-                "cname": "COA",
-                "ctype": "CORE",
-                "grade": 9,
-                "semno": 5,
-                "credits": 4
-            },
-            {
-                "sroll": "18CS01001",
-                "cname": "OPERATING SYSTEMS",
-                "ctype": "CORE",
-                "grade": 10,
-                "semno": 5,
-                "credits": 4
-            },
-            {
-                "sroll": "18CS01001",
-                "cname": "COA LAB",
-                "ctype": "LAB",
-                "grade": 10,
-                "semno": 5,
-                "credits": 3
-            }
-        ],
-        "sgpa": [
-            {
-                "sroll": "18CS01001",
-                "gpa": 10.0,
-                "semno": 1
-            },
-            {
-                "sroll": "18CS01001",
-                "gpa": 10.0,
-                "semno": 2
-            },
-            {
-                "sroll": "18CS01001",
-                "gpa": 9.53,
-                "semno": 3
-            },
-            {
-                "sroll": "18CS01001",
-                "gpa": 9.75,
-                "semno": 4
-            },
-            {
-                "sroll": "18CS01001",
-                "gpa": 9.71,
-                "semno": 5
-            }
-        ]
-    }
+
     let sgpa = data.sgpa;
     let grades = data.sgrades;
     let k = document.getElementById("gtables");
@@ -331,28 +142,28 @@ function drawLine(cxt,grades,labels){
         ]
     }
     let _options = {
-        
-            scales: {
-                y: {
-                    title:{
-                        display:true,
-                        text:"SGPA",
-                        font: {
-                            size: 15
-                        }
+
+        scales: {
+            y: {
+                title:{
+                    display:true,
+                    text:"SGPA",
+                    font: {
+                        size: 15
                     }
-                },
-                x:{
-                    title:{
-                        display:true,
-                        text:"Semester",
-                        font: {
-                            size: 15
-                        }
+                }
+            },
+            x:{
+                title:{
+                    display:true,
+                    text:"Semester",
+                    font: {
+                        size: 15
                     }
                 }
             }
-        
+        }
+
     }
     Line = new Chart(cxt,
         {

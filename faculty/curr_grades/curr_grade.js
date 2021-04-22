@@ -154,7 +154,7 @@ function fillData(data){
         x += `
         <button type="button" id="${list_courses[i]}"  class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
         ${list_courses[i]}
-        <span class="badge badge-dark badge-pill" data-toggle="tooltip" data-placement="left" title="#students">${num_students[i]}</span>
+        <span class="badge badge-primary badge-pill" data-toggle="tooltip" data-placement="left" title="#students">${num_students[i]}</span>
         </button>
         `
     }
