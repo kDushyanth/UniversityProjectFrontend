@@ -1,6 +1,6 @@
 let Bar;
 (function () {
-    getAndFillData('https://jsonplaceholder.typicode.com/todos/1');
+    getAndFillData('http://localhost:8081/facall');
 })();
 function fillViewData(current_course, data) {
     let current_sem = data[0][3];
@@ -71,118 +71,6 @@ function fillViewData(current_course, data) {
 
 }
 function fillData(data){
-    data = [
-        [
-            "INTRO TO ML",
-            "DISCRETE MATHS",
-            "PDS"
-        ],
-        {
-            "INTRO TO ML": [
-                [
-                    "18CS01001",
-                    "SRIPAD",
-                    2018,
-                    4,
-                    10,
-                    16
-                ],
-                [
-                    "18CS01002",
-                    "DUSHYANTH",
-                    2018,
-                    4,
-                    10,
-                    16
-                ],
-                [
-                    "18CS01003",
-                    "STUDENT3",
-                    2018,
-                    4,
-                    10,
-                    16
-                ],
-                [
-                    "18CS01004",
-                    "STUDENT4",
-                    2018,
-                    4,
-                    10,
-                    16
-                ]
-            ],
-            "DISCRETE MATHS": [
-                [
-                    "18CS01001",
-                    "SRIPAD",
-                    2018,
-                    3,
-                    9,
-                    10
-                ],
-                [
-                    "18CS01002",
-                    "DUSHYANTH",
-                    2018,
-                    3,
-                    10,
-                    10
-                ],
-                [
-                    "18CS01003",
-                    "STUDENT3",
-                    2018,
-                    3,
-                    10,
-                    10
-                ],
-                [
-                    "18CS01004",
-                    "STUDENT4",
-                    2018,
-                    3,
-                    10,
-                    10
-                ]
-            ],
-            "PDS": [
-                [
-                    "18CS01001",
-                    "SRIPAD",
-                    2018,
-                    1,
-                    10,
-                    1
-                ],
-                [
-                    "18CS01002",
-                    "DUSHYANTH",
-                    2018,
-                    1,
-                    10,
-                    1
-                ],
-                [
-                    "18CS01003",
-                    "STUDENT3",
-                    2018,
-                    1,
-                    10,
-                    1
-                ],
-                [
-                    "18CS01004",
-                    "STUDENT4",
-                    2018,
-                    1,
-                    10,
-                    1
-                ]
-            ]
-        },
-        3
-    ];
 
     let tot_courses = data[2];
     let list_courses = data[0];
